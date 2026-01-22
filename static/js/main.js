@@ -1,16 +1,12 @@
-// Leaflet map instance centered on the Dunkerque–Rouen–Reims triangle.
-const map = L.map('map').setView([49.8, 2.3], 8);
+document.addEventListener("DOMContentLoaded", () => {
 
-// OpenStreetMap tile layer added to the map.
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-}).addTo(map);
+    const map = L.map('map').setView([49.8, 2.3], 8);
 
-// Leaflet MarkerClusterGroup instance to handle overlapping markers.
-let markersGroup = L.markerClusterGroup();
-map.addLayer(markersGroup);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+    }).addTo(map);
 
-// +++++++++++++++++++++++++++++++++++++++ FUNCTIONS +++++++++++++++++++++++++++++
+    let markersGroup = L.markerClusterGroup();
+    map.addLayer(markersGroup);
 
-
-// +++++++++++++++++++++++++++++++++++++++ EXECUTION +++++++++++++++++++++++++++++
+});

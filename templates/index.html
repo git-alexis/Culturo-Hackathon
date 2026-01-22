@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culturo</title>
+    <meta name="description" content="Trouve ton point culturel">
+
+    <!-- Leaflet CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet/dist/leaflet.css"
+    />
+
+    <!-- MarkerCluster CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css"
+    />
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css"
+    />
+
+    <!-- App CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    />
+</head>
+
+<body>
+
+<header>
+    <h1>Culturo</h1>
+    <nav>
+        <ul>
+            <li><a href="#">Accueil</a></li>
+            <li><a href="#">À propos</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <aside id="menu">
+        <h2>Choose</h2>
+
+        <label>
+            <input type="checkbox" value="Monument historique" checked>
+            Monument historique
+        </label><br>
+
+        <label>
+            <input type="checkbox" value="Lieu de culte" checked>
+            Lieu de culte
+        </label><br>
+
+        <label>
+            <input type="checkbox" value="Musée" checked>
+            Musée
+        </label><br>
+
+        <label>
+            <input type="checkbox" value="Street art" checked>
+            Street art
+        </label><br>
+
+        <label>
+            <input type="checkbox" value="Évènements musicaux" checked>
+            Évènements musicaux
+        </label><br>
+
+        <label>
+            <input type="checkbox" value="Patrimoine mondial de l'UNESCO" checked>
+            Patrimoine mondial de l'UNESCO
+        </label>
+    </aside>
+
+    <!-- La carte Leaflet -->
+    <div id="map"></div>
+</main>
+
+<footer>
+    <p>&copy; 2026 - Culturo</p>
+</footer>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<!-- MarkerCluster JS -->
+<script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+
+<!-- App JS -->
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+</html>
