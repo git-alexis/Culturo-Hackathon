@@ -37,7 +37,6 @@ def api_places():
 
     for element in data.get("elements", []):
         places.append({
-            "id": element.get("id"),
             "lat": element.get("lat"),
             "lon": element.get("lon"),
             "name": element.get("tags", {}).get("name", "Sans nom"),
