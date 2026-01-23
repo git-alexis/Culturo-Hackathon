@@ -1,63 +1,91 @@
- @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            overflow: hidden;
-            background-color: #f9fafb;
-        }
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    background-color: #f9fafb;
+}
 
-        /* Conteneur pour votre future carte */
-        #map {
-            height: calc(100vh - 64px);
-            width: 100%;
-            z-index: 1;
-            background-color: #e5e7eb; /* Couleur d'attente pour la zone carte */
-        }
+/* Conteneur pour la carte */
+#map {
+    height: calc(100vh - 64px);
+    width: 100%;
+    z-index: 1;
+    background-color: #e5e7eb;
+}
 
-        /* Menu latéral coulissant */
-        #side-menu {
-            transition: transform 0.3s ease-in-out;
-            z-index: 1000;
-            position: fixed;
-            right: 0;
-            height: 100%;
-            width: 320px;
-            background-color: white;
-            box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
-            padding: 1.5rem;
-            border-left: 1px solid #e5e7eb;
-            overflow-y: auto;
-        }
+/* Menu latéral avec dégradé et transparence */
+#side-menu {
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+    position: fixed;
+    right: 0;
+    width: 320px;
+    padding: 1.5rem;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 1rem 0 0 1rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    overflow-y: auto;
+}
 
-        .menu-closed {
-            transform: translateX(100%);
-        }
+/* Fermer le menu */
+.menu-closed {
+    transform: translateX(100%);
+}
 
-        #menu-toggle {
-            z-index: 1001;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
+/* Toggle bouton */
+#menu-toggle {
+    z-index: 1001;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
 
-        .filter-item {
-            display: flex;
-            align-items: center;
-            padding: 0.75rem;
-            border-radius: 0.75rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: 1px solid transparent;
-        }
+/* Checkbox colorées */
+.filter-item {
+    display: flex;
+    text-shadow: black 5px;
+    align-items: center;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    background-color: rgba(255, 255, 255, 0.7);
+}
 
-        .filter-item:hover {
-            background-color: #f3f4f6;
-            border-color: #e5e7eb;
-        }
+.filter-item span {
+    text-shadow: 1px black
+}
 
-        /* Style pour l'ascenseur du menu */
-        #side-menu::-webkit-scrollbar {
-            width: 6px;
-        }
-        #side-menu::-webkit-scrollbar-thumb {
-            background-color: #e5e7eb;
-            border-radius: 10px;
-        }
+
+/* Hover */
+.filter-item:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Couleurs différentes pour chaque catégorie */
+input[value="Monument historique"]+span {
+    color: #cdb4db;
+}
+
+input[value="Lieu de culte"]+span {
+    color: #ffc8dd;
+}
+
+input[value="Musée"]+span {
+    color: #ffafcc;
+}
+
+input[value="Street art"]+span {
+    color: #bde0fe;
+}
+
+
+/* Scroll du menu */
+#side-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+#side-menu::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+}
