@@ -1,3 +1,11 @@
+const CATEGORY_COLORS = {
+    "Monument historique": "#80ffdb",
+    "Lieu de culte": "#56cfe1",
+    "Musée": "#5e60ce",
+    "Street art": "#7400b8"
+};
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const map = L.map('map').setView([49.8, 2.3], 8);
@@ -18,9 +26,19 @@ document.addEventListener("DOMContentLoaded", () => {
             const allMarkers = [];
 
             data.forEach(place => {
-                const marker = L.marker([place.lat, place.lon])
-                    .bindPopup(`<b>${place.name}</b>`);
-                
+                const color = CATEGORY_COLORS[getCategoryFromTags(place.tags)] || "#a2d2ff";
+
+                const marker = L.circleMarker([place.lat, place.lon], {
+                    radius: 8,
+                    fillColor: color,
+                    color: "#000",        // contour noir
+                    weight: 1,
+                    opacity: 1,
+                    fillOpacity: 0.9
+                });
+
+                    marker.bindPopup(`<b>${place.name}</b>`);
+
                 // Ajouter le type de lieu au marker
                 marker.category = getCategoryFromTags(place.tags);
 

@@ -64,19 +64,19 @@ body {
 
 /* Couleurs différentes pour chaque catégorie */
 input[value="Monument historique"]+span {
-    color: #cdb4db;
+    color: #80ffdb;
 }
 
 input[value="Lieu de culte"]+span {
-    color: #ffc8dd;
+    color: #56cfe1;
 }
 
 input[value="Musée"]+span {
-    color: #ffafcc;
+    color: #5e60ce;
 }
 
 input[value="Street art"]+span {
-    color: #bde0fe;
+    color: #7400b8;
 }
 
 
