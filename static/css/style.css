@@ -1,4 +1,64 @@
-#map {
-    height: 600px;
-    width: 100%;
-}
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            background-color: #f9fafb;
+        }
+
+        /* Conteneur pour votre future carte */
+        #map {
+            height: calc(100vh - 64px);
+            width: 100%;
+            z-index: 1;
+            background-color: #e5e7eb; /* Couleur d'attente pour la zone carte */
+        }
+
+        /* Menu latéral coulissant */
+        #side-menu {
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+            position: fixed;
+            top: 64px;
+            right: 0;
+            height: 100%;
+            width: 320px;
+            background-color: white;
+            box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            border-left: 1px solid #e5e7eb;
+            overflow-y: auto;
+        }
+
+        .menu-closed {
+            transform: translateX(100%);
+        }
+
+        #menu-toggle {
+            z-index: 1001;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .filter-item:hover {
+            background-color: #f3f4f6;
+            border-color: #e5e7eb;
+        }
+
+        /* Style pour l'ascenseur du menu */
+        #side-menu::-webkit-scrollbar {
+            width: 6px;
+        }
+        #side-menu::-webkit-scrollbar-thumb {
+            background-color: #e5e7eb;
+            border-radius: 10px;
+        }

@@ -3,96 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Culturo</title>
-    <meta name="description" content="Trouve ton point culturel">
-
-    <!-- Leaflet CSS -->
-    <link
-        rel="stylesheet"
-        href="https://unpkg.com/leaflet/dist/leaflet.css"
-    />
-
-    <!-- MarkerCluster CSS -->
-    <link
-        rel="stylesheet"
-        href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css"
-    />
-    <link
-        rel="stylesheet"
-        href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css"
-    />
-
-    <!-- App CSS -->
-    <link
-        rel="stylesheet"
-        href="{{ url_for('static', filename='css/style.css') }}"
-    />
+    <title>Culturo - Explorez la culture</title>
+    
+    <!-- Leaflet CSS (Optionnel, à garder si vous utilisez Leaflet) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Tailwind CSS pour la mise en page -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="./static/css/style.css">
 </head>
-
 <body>
 
-<header>
-    <h1>Culturo</h1>
-    <nav>
-        <ul>
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#">À propos</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
+    <!-- Barre de navigation -->
+    <nav class="bg-indigo-600 text-white h-16 flex items-center justify-between px-6 relative z-50">
+        <h1 class="text-2xl font-bold tracking-tight">Culturo</h1>
+        <button id="menu-toggle" class="bg-white text-indigo-600 p-2 rounded-lg font-medium hover:bg-indigo-50 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+            </svg>
+        </button>
     </nav>
-</header>
 
-<main>
-    <aside id="menu">
-        <h2>Choose</h2>
+    <!-- Zone principale -->
+    <main class="relative flex">
+        
+        <!-- Emplacement de la carte -->
+        <div id="map">
+            <!-- Votre carte sera injectée ici -->
+        </div>
 
-        <label>
-            <input type="checkbox" value="Monument historique" checked>
-            Monument historique
-        </label><br>
+        <!-- Menu de filtrage -->
+        <aside id="side-menu">
+            <div class="mb-8">
+                <h2 class="text-xl font-semibold text-gray-800">Filtres culturels</h2>
+                <p class="text-sm text-gray-500">Sélectionnez les catégories à afficher</p>
+            </div>
 
-        <label>
-            <input type="checkbox" value="Lieu de culte" checked>
-            Lieu de culte
-        </label><br>
+            <div class="space-y-3">
+                <label class="filter-item">
+                    <input type="checkbox" class="category-checkbox w-5 h-5 text-indigo-600 rounded" value="monument">
+                    <span class="ml-4 text-gray-700 font-medium">Monument historique</span>
+                </label>
 
-        <label>
-            <input type="checkbox" value="Musée" checked>
-            Musée
-        </label><br>
+                <label class="filter-item">
+                    <input type="checkbox" class="category-checkbox w-5 h-5 text-indigo-600 rounded" value="culte">
+                    <span class="ml-4 text-gray-700 font-medium">Lieu de culte</span>
+                </label>
 
-        <label>
-            <input type="checkbox" value="Street art" checked>
-            Street art
-        </label><br>
+                <label class="filter-item">
+                    <input type="checkbox" class="category-checkbox w-5 h-5 text-indigo-600 rounded" value="musee">
+                    <span class="ml-4 text-gray-700 font-medium">Musée</span>
+                </label>
 
-        <label>
-            <input type="checkbox" value="Évènements musicaux" checked>
-            Évènements musicaux
-        </label><br>
+                <label class="filter-item">
+                    <input type="checkbox" class="category-checkbox w-5 h-5 text-indigo-600 rounded" value="streetart">
+                    <span class="ml-4 text-gray-700 font-medium">Street art</span>
+                </label>
 
-        <label>
-            <input type="checkbox" value="Patrimoine mondial de l'UNESCO" checked>
-            Patrimoine mondial de l'UNESCO
-        </label>
-    </aside>
+            </div>
 
-    <!-- La carte Leaflet -->
-    <div id="map"></div>
-</main>
+            <div class="mt-10 p-4 bg-indigo-50 rounded-lg text-indigo-800 text-sm italic">
+                Cochez une catégorie pour explorer les trésors culturels.
+            </div>
+        </aside>
 
-<footer>
-    <p>&copy; 2026 - Culturo</p>
-</footer>
+    </main>
 
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Gestionnaire d'affichage du menu uniquement
+        const menuToggle = document.getElementById('menu-toggle');
+        const sideMenu = document.getElementById('side-menu');
 
-<!-- MarkerCluster JS -->
-<script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+        menuToggle.addEventListener('click', () => {
+            sideMenu.classList.toggle('menu-closed');
+        });
 
-<!-- App JS -->
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
-
+        // Fermeture automatique du menu sur petits écrans
+        if (window.innerWidth < 1024) {
+            sideMenu.classList.add('menu-closed');
+        }
+    </script>
 </body>
 </html>
