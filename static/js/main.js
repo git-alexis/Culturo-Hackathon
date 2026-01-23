@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             // Fonction pour filtrer selon les checkboxes
-            const checkboxes = document.querySelectorAll("#menu input[type='checkbox']");
+            const checkboxes = document.querySelectorAll("#side-menu input[type='checkbox']");
             checkboxes.forEach(cb => {
                 cb.addEventListener('change', () => {
                     markersGroup.clearLayers();

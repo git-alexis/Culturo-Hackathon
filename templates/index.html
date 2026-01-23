@@ -5,13 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Culturo - Explorez la culture</title>
     
-    <!-- Leaflet CSS (Optionnel, à garder si vous utilisez Leaflet) -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     
     <!-- Tailwind CSS pour la mise en page -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link rel="stylesheet" href="./static/css/style.css">
+    <!-- Leaflet CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet/dist/leaflet.css"
+    />
+
+    <!-- MarkerCluster CSS -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css"
+    />
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css"
+    />
+
+    <!-- App CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    />
+﻿
+
 </head>
 <body>
 
@@ -42,22 +61,22 @@
 
             <div class="space-y-3">
                 <label class="filter-item">
-                    <input type="checkbox" class="category-checkbox w-5 h-5 text-indigo-600 rounded" value="monument">
+                    <input type="checkbox" class="category-checkbox w-5 h-5 text-indigo-600 rounded" value="Monument historique" checked>  
                     <span class="ml-4 text-gray-700 font-medium">Monument historique</span>
                 </label>
 
                 <label class="filter-item">
-                    <input type="checkbox" class="category-checkbox w-5 h-5 text-indigo-600 rounded" value="culte">
+                    <input type="checkbox" class="category-checkbox w-5 h-5 text-indigo-600 rounded" value="Lieu de culte" checked>
                     <span class="ml-4 text-gray-700 font-medium">Lieu de culte</span>
-                </label>
+                </label> 
 
                 <label class="filter-item">
-                    <input type="checkbox" class="category-checkbox w-5 h-5 text-indigo-600 rounded" value="musee">
+                    <input type="checkbox" class="category-checkbox w-5 h-5 text-indigo-600 rounded" value="Musée" checked>
                     <span class="ml-4 text-gray-700 font-medium">Musée</span>
                 </label>
 
                 <label class="filter-item">
-                    <input type="checkbox" class="category-checkbox w-5 h-5 text-indigo-600 rounded" value="streetart">
+                    <input type="checkbox" class="category-checkbox w-5 h-5 text-indigo-600 rounded" value="Street art" checked>
                     <span class="ml-4 text-gray-700 font-medium">Street art</span>
                 </label>
 
@@ -84,5 +103,14 @@
             sideMenu.classList.add('menu-closed');
         }
     </script>
+
+    <!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<!-- MarkerCluster JS -->
+<script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+
+<!-- App JS -->
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
